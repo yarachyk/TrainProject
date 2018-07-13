@@ -20,13 +20,13 @@ public class Station {
         return toNext;
     }
 
-    public int distance(int count){
-        int distance=0;
-        for (int i=0; i<count-1; i++){
-            distance += toNext;
-        }
-        return distance;
-    }
+//    public int distance(int count){
+//        int distance=0;
+//        for (int i=0; i<count-1; i++){
+//            distance += toNext;
+//        }
+//        return distance;
+//    }
 
 
 }

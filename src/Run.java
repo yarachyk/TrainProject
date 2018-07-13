@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Run {
 
@@ -20,22 +20,22 @@ public class Run {
         System.out.println("2: Черкаси - Дніпро");
         Road r = new Road();
         int p = scan.nextInt();
+
+
         switch (p) {
             case 1:
                 r.route1();
-                System.out.println(" ");
                 break;
 
             case 2:
                 r.route2();
-                System.out.println(" ");
                 break;
 
             default: System.out.println("Ви ввели неправильне значення! До побачення!");
             break;
         }
         if (p==1||p==2){
-            System.out.println("Ви прибули пункту призначення!");
+            System.out.println("Вітаємо в пункті призначення!");
         }
 
 

@@ -1,4 +1,5 @@
 import java.util.*;
+import java.text.*;
 
 public class Road {
     Scanner sc = new Scanner(System.in);
@@ -45,6 +46,11 @@ public class Road {
             route_new.get(i).info();
 
         }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 //        Train t = new Train(90);
         int count = st2-st1+1;
@@ -70,6 +76,12 @@ public class Road {
 
         }
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Ціна за квиток буде становити "+distance+"грн.");
         System.out.println("Внесіть кошти ("+distance+")");
         int input = sc.nextInt();
@@ -79,10 +91,23 @@ public class Road {
                 System.out.println("Оплата пройшла успішно!");
             } else System.out.println("Спробуйте ще раз!");
         }while (input!=distance);
+
+        Date date = new Date();
+        Date lastdate = new Date(date.getTime() + min+60000);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+        SimpleDateFormat format2 = new SimpleDateFormat("HH:mm:ss");
+//        System.out.println("Сейчас "+format.format(date));
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Введіть ваше ім'я:");
         String pass = sc.nextLine();
         System.out.println("Ваш квиток:");
-        System.out.println("-------------------------------------------");
+        System.out.println("------------------------------------------------");
         System.out.println("Пасажир: "+pass);
         System.out.println("Потяг: Суми - Чернігів");
         System.out.print("Маршрут: ");
@@ -91,9 +116,41 @@ public class Road {
         route_new.get(route_new.size()-1).info();
         System.out.println(" ");
         System.out.println("Ціна: "+distance+"грн.");
-        System.out.println("Час відправлення: ");
-        System.out.println("Час прибуття: ");
-        System.out.println("-------------------------------------------");
+        System.out.println("Дата та час відправлення: "+format.format(date));
+        System.out.println("Дата та час прибуття: "+format.format(lastdate));
+        System.out.println("------------------------------------------------");
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+        System.out.print("Потяг 'Суми-Чернігів' відправляється з міста ");
+        route_new.get(0).info();
+        System.out.println("о "+format2.format(date));
+
+        for(int i=1; i<route_new.size(); i++) {
+            System.out.print("Наступна станція - місто ");
+            route_new.get(i).info();
+            System.out.println();
+            System.out.println();
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.print("Ви прибули в місто ");
+            route_new.get(i).info();
+            System.out.println();
+
+
+        }
+        System.out.println("На годиннику "+format2.format(lastdate));
+
 
     }
 
