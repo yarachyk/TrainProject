@@ -11,20 +11,24 @@ class Road {
     Ticket ticket = new Ticket();
     SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
     SimpleDateFormat format2 = new SimpleDateFormat("HH:mm:ss");
+    int st1;
+    int st2;
+    int speed = 90;
+    int distance;
+    Date date;
+    Date lastdate;
 
 
-
-    void getRoute1Norm() {
-        for (Station i:route1){
-            i.info();
+    void pause(){
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    ArrayList<Station> getRoute1() {
-        return route1;
-    }
 
-    void createRoad1(){
+    void createRoute1(){
         Station sumy = new Station("Суми", 100, true, false);
         Station khark = new Station("Харків", 150, false, false);
         Station polt = new Station("Полтава", 100, false, false);
@@ -38,7 +42,7 @@ class Road {
         route1.add(chern);
     }
 
-    void createRoad2(){
+    void createRoute2(){
         Station cherk = new Station("Черкаси", 150, true, false);
         Station vynn = new Station("Вінниця", 100, false, false);
         Station kher = new Station("Херсон", 200, false, false);
@@ -52,136 +56,58 @@ class Road {
         route2.add(dnip);
     }
 
-    void makeRoute1(){
+    void makeRoute(ArrayList<Station> route) {
         System.out.println("З якої станції ви хочете відправитися?");
-        for (int i=0; i<getRoute1().size()-1; i++){
+        for (int i = 0; i < route.size() - 1; i++) {
+            System.out.print((i + 1) + " - ");
+            route.get(i).info();
+        }
+        System.out.println(" ");
+        st1 = sc.nextInt();
+
+        System.out.println("Куди ви хочете прибути?");
+        for (int i = st1; i < route.size(); i++) {
             System.out.print((i+1) + " - ");
-            getRoute1().get(i).info();
+            route.get(i).info();
         }
-        System.out.println(" ");
-        int st1 = sc.nextInt();
-
-        System.out.println("Куди ви хочете прибути?");
-        for (int i=st1; i<getRoute1().size(); i++){
-            int c = 1;
-            System.out.print(c + " - ");
-            getRoute1().get(i).info();
-            c++;
-        }
-        int st2 = sc.nextInt();
-
-        for (int i=st1-1; i<st2; i++) {
-            route_new.add(getRoute1().get(i));
-        }
-
-        System.out.println("Ваш маршрут:");
-        for (int i=0; i<route_new.size(); i++){
-            if (i<route_new.size()&& i!=0){
-                System.out.print("- ");
-            }
-            route_new.get(i).info();
-        }
-
-
-    }
-
-    void route1() {
-
-        for (int i = 0; i < route1.size() - 1; i++) {
-            System.out.print((i + 1) + " - ");
-            route1.get(i).info();
-        }
-        System.out.println(" ");
-        System.out.println("З якої станції ви хочете відправитися?");
-        int st1 = sc.nextInt();
-        System.out.println("Куди ви хочете прибути?");
-        for (int i = st1; i < route1.size(); i++) {
-            System.out.print((i + 1) + " - ");
-            route1.get(i).info();
-        }
-        int st2 = sc.nextInt();
+        st2 = sc.nextInt();
 
         for (int i = st1 - 1; i < st2; i++) {
-            route_new.add(route1.get(i));
+            route_new.add(route.get(i));
         }
+
         System.out.println("Ваш маршрут:");
         for (int i = 0; i < route_new.size(); i++) {
             if (i < route_new.size() && i != 0) {
                 System.out.print("- ");
             }
             route_new.get(i).info();
-
         }
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    }
 
+    void distan(ArrayList<Station> route_new){
         int count = st2 - st1 + 1;
-        int distance = 0;
+        distance = 0;
         for (int i = 0; i < count - 1; i++) {
             distance += route_new.get(i).dist();
         }
-        int speed = 90;
         int min = ((distance / speed) * 60) + (10 * (count - 1));
         int hours = min / 60;
         System.out.println(" ");
-        if (hours != 0) {
-            int minutes = min % 60;
-            if (hours == 1)
-                System.out.println("Ваш потяг буде рухатися зі швидкістю 90 км/год. Ви прибудете до місця призначення через " + hours + " годину та " + minutes + " хвилин.");
-            else if (hours == 2 || hours == 3 || hours == 4)
-                System.out.println("Ваш потяг буде рухатися зі швидкістю 90 км/год. Ви прибудете до місця призначення через " + hours + " години та " + minutes + " хвилин.");
-            else
-                System.out.println("Ваш потяг буде рухатися зі швидкістю 90 км/год. Ви прибудете до місця призначення через " + hours + " годин та " + minutes + " хвилин.");
-        } else {
-            if (hours == 1)
-                System.out.println("Ваш потяг буде рухатися зі швидкістю 90 км/год. Ви прибудете до місця призначення через " + hours + " годину.");
-            else if (hours == 2 || hours == 3 || hours == 4)
-                System.out.println("Ваш потяг буде рухатися зі швидкістю 90 км/год. Ви прибудете до місця призначення через " + hours + " години.");
-            else
-                System.out.println("Ваш потяг буде рухатися зі швидкістю 90 км/год. Ви прибудете до місця призначення через " + hours + " годин.");
+        int minutes = min % 60;
+        System.out.println("Ваш потяг буде рухатися зі швидкістю 90 км/год. Ви прибудете до місця призначення через " + hours + " год. та " + minutes + " хв.");
 
+
+    }
+
+    int getMin(){
+        int count = st2 - st1 + 1;
+        distance = 0;
+        for (int i = 0; i < count - 1; i++) {
+            distance += route_new.get(i).dist();
         }
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Ціна за квиток буде становити " + distance + "грн.");
-        System.out.println("Внесіть кошти (" + distance + ")");
-        cashbox.cash(distance);
-
-//        int input = sc.nextInt();
-//        sc.nextLine();
-//        do {
-//            if (input == distance) {
-//                System.out.println("Оплата пройшла успішно!");
-//            } else System.out.println("Спробуйте ще раз!");
-//        }while (input!=distance);
-
-        Date date = new Date();
-        Date lastdate = new Date(date.getTime() + min * 60000);
-
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Введіть ваше ім'я:");
-        String pass = sc.next();
-        ticket.createTicket(pass, route1.get(0).getName(), route1.get(route1.size() - 1).getName(), route_new.get(0).getName(), route_new.get(route_new.size() - 1).getName(), distance, date, lastdate);
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        go(route1, route_new, date, lastdate);
+        int min = ((distance / speed) * 60) + (10 * (count - 1));
+        return min;
     }
 
 
@@ -213,5 +139,34 @@ class Road {
 
     }
 
+
+    void route1() {
+        makeRoute(route1);
+        pause();
+        distan(route_new);
+        pause();
+        cashbox.cash(distance);
+        date = new Date();
+        lastdate = new Date(date.getTime() + getMin() * 60000);
+        pause();
+        ticket.createTicket(route1.get(0).getName(), route1.get(route1.size() - 1).getName(), route_new.get(0).getName(), route_new.get(route_new.size() - 1).getName(), distance, date, lastdate);
+        pause();
+        go(route1, route_new, date, lastdate);
+    }
+
+
+    void route2() {
+        makeRoute(route2);
+        pause();
+        distan(route_new);
+        pause();
+        cashbox.cash(distance);
+        date = new Date();
+        lastdate = new Date(date.getTime() + getMin() * 60000);
+        pause();
+        ticket.createTicket(route2.get(0).getName(), route2.get(route2.size() - 1).getName(), route_new.get(0).getName(), route_new.get(route_new.size() - 1).getName(), distance, date, lastdate);
+        pause();
+        go(route2, route_new, date, lastdate);
+    }
 
 }

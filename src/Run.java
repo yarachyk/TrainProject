@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Run {
 
+
     public static void main(String[] args){
 
         Scanner scan = new Scanner(System.in);
@@ -14,15 +15,13 @@ public class Run {
 
         switch (p) {
             case 1:
-                r.createRoad1();
-                //r.getRoute1Norm();
-                //r.makeRoute1();
+                r.createRoute1();
                 r.route1();
                 break;
 
             case 2:
-                r.createRoad2();
-
+                r.createRoute2();
+                r.route2();
                 break;
 
             default: System.out.println("Ви ввели неправильне значення! До побачення!");
@@ -32,21 +31,6 @@ public class Run {
             System.out.println("Вітаємо в пункті призначення!");
         }
 
-
-
-
-
-//        for (int i = st1; i<6; i++){
-//            if (i<5) {
-//                System.out.println("Ви прибули на станцію "+i+" о");
-//                System.out.println("Наступна станція - " + (i + 1));
-//            }
-//            else{
-//               System.out.println("Ви прибули на станцію призначення.");
-//            }
-//        }
-
-        //       System.out.println("First try!");
     }
 
 }
