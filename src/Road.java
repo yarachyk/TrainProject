@@ -84,13 +84,16 @@ public class Road {
 
         System.out.println("Ціна за квиток буде становити "+distance+"грн.");
         System.out.println("Внесіть кошти ("+distance+")");
-        int input = sc.nextInt();
-        sc.nextLine();
-        do {
-            if (input == distance) {
-                System.out.println("Оплата пройшла успішно!");
-            } else System.out.println("Спробуйте ще раз!");
-        }while (input!=distance);
+        Cashbox cashbox = new Cashbox();
+        cashbox.cash(distance);
+
+//        int input = sc.nextInt();
+//        sc.nextLine();
+//        do {
+//            if (input == distance) {
+//                System.out.println("Оплата пройшла успішно!");
+//            } else System.out.println("Спробуйте ще раз!");
+//        }while (input!=distance);
 
         Date date = new Date();
         Date lastdate = new Date(date.getTime() + min+60000);
