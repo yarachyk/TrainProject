@@ -111,11 +111,16 @@ class Road {
     }
 
 
+
+
     void go(ArrayList<Station> route_old, ArrayList<Station> route, Date date, Date lastdate){
         System.out.println();
         System.out.print("Потяг "+route_old.get(0).getName()+" - "+route_old.get(route_old.size()-1).getName()+" відправляється з міста ");
         route.get(0).info();
         System.out.println("о "+format2.format(date));
+        Date nextSt;
+        nextSt = new Date (date.getTime() + (route.get(0).toNext/speed)*360000);
+
 
         for(int i=1; i<route.size(); i++) {
             System.out.print("Наступна станція - місто ");
@@ -131,6 +136,9 @@ class Road {
 
             System.out.print("Ви прибули в місто ");
             route.get(i).info();
+            System.out.print(" о ");
+
+            System.out.println(format2.format(nextSt));
             System.out.println();
 
 
