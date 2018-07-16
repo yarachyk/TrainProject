@@ -2,16 +2,6 @@ import java.util.*;
 
 public class Run {
 
-    public void runToNextSt(Station F, Station S){
-        //      int startTime = 1;
-        //      int n = 5; //тут будет ввод с клавы
-        //       Road r = new Road(n);
-        //       System.out.println("Train starts road in"+ startTime);
-        System.out.println("Ви прибули на станцію " +F);
-        System.out.println("Наступна станція - "+S);
-
-    }
-
     public static void main(String[] args){
 
         Scanner scan = new Scanner(System.in);
@@ -24,11 +14,15 @@ public class Run {
 
         switch (p) {
             case 1:
+                r.createRoad1();
+                //r.getRoute1Norm();
+                //r.makeRoute1();
                 r.route1();
                 break;
 
             case 2:
-                r.route2();
+                r.createRoad2();
+
                 break;
 
             default: System.out.println("Ви ввели неправильне значення! До побачення!");
