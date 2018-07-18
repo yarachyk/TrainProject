@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Run {
+class Run {
 
 
     public static void main(String[] args){
@@ -12,16 +12,15 @@ public class Run {
         Road r = new Road();
         int p = scan.nextInt();
 
-
         switch (p) {
             case 1:
                 r.createRoute1();
-                r.route1();
+                r.route(r.getRoute1());
                 break;
 
             case 2:
                 r.createRoute2();
-                r.route2();
+                r.route(r.getRoute2());
                 break;
 
             default: System.out.println("Ви ввели неправильне значення! До побачення!");

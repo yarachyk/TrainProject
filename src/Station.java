@@ -1,4 +1,4 @@
-public class Station {
+class Station {
     String name;
     int toNext;
     private boolean isFirst;
@@ -12,13 +12,13 @@ public class Station {
     }
 
 
-    public void info(){
+    void info(){
         System.out.print(name+" ");
     }
 
-    public int dist() {
+    int dist() {
         return toNext;
     }
 
-    public String getName() { return name; }
+    String getName() { return name; }
 }
